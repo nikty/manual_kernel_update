@@ -1,14 +1,16 @@
+graphical
+
 install
 cdrom
 
 lang en_US.UTF-8
 keyboard us
-timezone UTC
+timezone Europe/Moscow
 
-network --onboot yes --bootproto=dhcp --device=eth0 --activate --noipv6
+network --onboot yes --bootproto=dhcp --device=eth0 --activate
 
 rootpw vagrant
-authconfig --enableshadow --passalgo=sha512
+#authconfig --enableshadow --passalgo=sha512
 user --name=vagrant --groups=vagrant --password=vagrant
 
 firewall --disabled
@@ -16,11 +18,10 @@ selinux --disabled
 firstboot --disabled
 
 # Old cool eth0/eth1/... -> "net.ifnames=0 biosdevname=0"
-bootloader --location=mbr --append="ipv6.disable=1 net.ifnames=0 biosdevname=0"
-text
+bootloader --location=mbr --append="net.ifnames=0 biosdevname=0"
 skipx
 
-logging --level=info
+#logging --level=info
 zerombr
 clearpart --all --initlabel
 autopart
@@ -33,7 +34,7 @@ openssh-clients
 openssh-server
 %end
 
-%post --log=/root/post_install.log
+%post --log=/root/ks-post.log
 
 # Add vagrant to sudoers
 cat > /etc/sudoers.d/vagrant << EOF_sudoers_vagrant
@@ -44,17 +45,17 @@ EOF_sudoers_vagrant
 /bin/sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 
 # Fix sshd config for CentOS 7 1611 (reboot issue)
-cat << EOF_sshd_config >> /etc/ssh/sshd_config
-
-TCPKeepAlive yes
-ClientAliveInterval 0
-ClientAliveCountMax 3
-
-UseDNS no
-UsePAM no
-GSSAPIAuthentication no
-ChallengeResponseAuthentication no
-
-EOF_sshd_config
-
+### cat << EOF_sshd_config >> /etc/ssh/sshd_config
+### 
+### TCPKeepAlive yes
+### ClientAliveInterval 0
+### ClientAliveCountMax 3
+### 
+### UseDNS no
+### UsePAM no
+### GSSAPIAuthentication no
+### ChallengeResponseAuthentication no
+### 
+### EOF_sshd_config
+### 
 %end

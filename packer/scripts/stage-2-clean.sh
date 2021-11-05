@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # clean all
 yum update -y

@@ -3,10 +3,10 @@
 set -e
 
 # Install elrepo
-yum install -y http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+yum -y install https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm
 
 # Install new kernel
-yum --enablerepo elrepo-kernel install kernel-ml -y
+yum -y --enablerepo elrepo-kernel install kernel-ml
 
 # Remove older kernels (Only for demo! Not Production!)
 #rm -f /boot/*3.10*

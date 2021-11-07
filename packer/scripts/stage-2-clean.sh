@@ -6,9 +6,11 @@ yum clean all
 
 
 # Install vagrant default key
-mkdir -pm 700 /home/vagrant/.ssh
-curl -sL https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -o /home/vagrant/.ssh/authorized_keys
+mkdir -p /home/vagrant/.ssh
+curl -sL -o /home/vagrant/.ssh/authorized_keys https://raw.githubusercontent.com/hashicorp/vagrant/main/keys/vagrant.pub
+
 chmod 0600 /home/vagrant/.ssh/authorized_keys
+chmod 0700 /home/vagrant/.ssh
 chown -R vagrant:vagrant /home/vagrant/.ssh
 
 

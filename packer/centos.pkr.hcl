@@ -34,8 +34,8 @@ source "virtualbox-iso" "centos-7" {
   guest_os_type = "RedHat_64"
   iso_checksum = "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a"
   #iso_checksum_type = "sha256"
-  iso_url = "file:/home/lab/shared/CentOS-7-x86_64-Minimal-2009.iso"
-  ### iso_url           = "http://mirror.corbina.net/pub/Linux/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso"
+  #iso_url = "file:/home/lab/shared/CentOS-7-x86_64-Minimal-2009.iso"
+  iso_url = "http://mirror.corbina.net/pub/Linux/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso"
 
   headless = true
   boot_wait = "10s"
